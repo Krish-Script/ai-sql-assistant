@@ -486,5 +486,5 @@ if __name__ == "__main__":
     print("    POST http://localhost:5000/generate")
     print("    POST http://localhost:5000/evaluate")
     print("=" * 50)
-    # NOTE: debug=True is for development only. Set to False in production.
-    app.run(host="0.0.0.0", port=5000, debug=True)
+
+    app.run(host="0.0.0.0", port=5000, debug=False)
