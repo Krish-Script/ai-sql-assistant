@@ -1,0 +1,514 @@
+[
+  {
+    "idx": 0,
+    "nl_query": "What are the names of people who are not from Russia?",
+    "sql_query": "SELECT Name FROM people WHERE Nationality != 'Russia'",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 1,
+    "nl_query": "What are the details for all projects that did not hire any staff in a research role?",
+    "sql_query": "SELECT project_details FROM Projects WHERE project_id NOT IN ( SELECT project_id FROM Project_Staff WHERE role_code = 'researcher' )",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 2,
+    "nl_query": "Return the elimination movies of wrestlers on Team Orton.",
+    "sql_query": "SELECT Elimination_Move FROM Elimination WHERE Team = 'Team Orton'",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 3,
+    "nl_query": "What are the headquarters that have both a company in the banking and 'oil and gas' industries?",
+    "sql_query": "SELECT headquarters FROM company WHERE main_industry = 'Banking' INTERSECT SELECT headquarters FROM company WHERE main_industry = 'Oil AND gas'",
+    "scenario": "filters",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 4,
+    "nl_query": "Which Annual change has a Capacity in use of 66.21%?",
+    "sql_query": "SELECT Annual change FROM TABLE WHERE Capacity IN use = 66.21%",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 5,
+    "nl_query": "Name the segment b for 226 episode",
+    "sql_query": "SELECT Segment B FROM TABLE WHERE Episode = 226",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 6,
+    "nl_query": "In which province is the 3rd largest Dehbarez?",
+    "sql_query": "SELECT Province FROM TABLE WHERE 3rd Largest = dehbarez",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 7,
+    "nl_query": "How many seats does the party of others have with a change of -1 and more than 0% votes?",
+    "sql_query": "SELECT SUM Seats FROM TABLE WHERE Change = -1 AND Party = others AND % votes > 0",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 8,
+    "nl_query": "What is the sum of the golds of the nation with 5 total and less than 0 bronze medals?",
+    "sql_query": "SELECT SUM Gold FROM TABLE WHERE Total = 5 AND Bronze < 0",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 9,
+    "nl_query": "Which Throws have a Position of 3b/rhp?",
+    "sql_query": "SELECT Throws FROM TABLE WHERE Position = 3b/rhp",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 10,
+    "nl_query": "Which Score has Points smaller than 67, and a Home of calgary flames?",
+    "sql_query": "SELECT Score FROM TABLE WHERE Points < 67 AND Home = calgary flames",
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 11,
+    "nl_query": "How many airports do we have?",
+    "sql_query": "SELECT COUNT(*) FROM AIRPORTS",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 12,
+    "nl_query": "How many distinct claim outcome codes are there?",
+    "sql_query": "SELECT COUNT(DISTINCT claim_outcome_code) FROM claims_processing",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 13,
+    "nl_query": "What is the maximum capacity and the average of all stadiums ?",
+    "sql_query": "SELECT MAX(capacity), average FROM stadium",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 14,
+    "nl_query": "What is the number of airports per country, ordered from most to least?",
+    "sql_query": "SELECT COUNT(*) , country FROM airports GROUP BY country ORDER BY COUNT(*) DESC",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 15,
+    "nl_query": "What are the classes of races that have two or more corresponding races?",
+    "sql_query": "SELECT CLASS FROM race GROUP BY CLASS HAVING COUNT(*) >= 2",
+    "scenario": "aggregations",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 16,
+    "nl_query": "Count the number of different film ratings.",
+    "sql_query": "SELECT COUNT(DISTINCT rating) FROM film",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 17,
+    "nl_query": "Count the number of customers who are active.",
+    "sql_query": "SELECT COUNT(*) FROM customer WHERE active = '1'",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 18,
+    "nl_query": "Which kind of policy type was chosen by the most customers?",
+    "sql_query": "SELECT Policy_Type_Code FROM Customer_Policies GROUP BY Policy_Type_Code ORDER BY COUNT(*) DESC LIMIT 1",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 19,
+    "nl_query": "Count the number of captains that have each rank.",
+    "sql_query": "SELECT COUNT(*) , rank FROM captain GROUP BY rank",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 20,
+    "nl_query": "What is the p max ( bar ) for the 6876 f bolt ( kgf )?",
+    "sql_query": "SELECT MIN P MAX ( bar ) FROM TABLE WHERE F bolt ( kgf ) = 6876",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "wikisql"
+  },
+  {
+    "idx": 21,
+    "nl_query": "What is the Pine Rivers total population after 1947 with a Redcliffe population smaller than 68,877, a total population greater than 50,785, and a Caboolture population greater than 12,207?",
+    "sql_query": "SELECT COUNT (Pine Rivers) FROM TABLE WHERE Year > 1947 AND (Redcliffe) < 68,877 AND Population (Total) > 50,785 AND (Caboolture) > 12,207",
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "wikisql"
+  },
+  {
+    "idx": 22,
+    "nl_query": "What is the birth date of the poker player with the lowest earnings?",
+    "sql_query": "SELECT T1.Birth_Date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 23,
+    "nl_query": "Find the names of the trains that do not pass any station located in London.",
+    "sql_query": "SELECT T2.name FROM train_station AS T1 JOIN train AS T2 ON T1.train_id = T2.train_id WHERE T1.station_id NOT IN (SELECT T4.station_id FROM train_station AS T3 JOIN station AS T4 ON T3.station_id = T4.station_id WHERE t4.location = 'London')",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 24,
+    "nl_query": "Find the id, forename and number of races of all drivers who have at least participated in two races?",
+    "sql_query": "SELECT T1.driverid , T1.forename , COUNT(*) FROM drivers AS T1 JOIN results AS T2 ON T1.driverid = T2.driverid JOIN races AS T3 ON T2.raceid = T3.raceid GROUP BY T1.driverid HAVING COUNT(*) >= 2",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 25,
+    "nl_query": "what is the name and age of the youngest winning pilot?",
+    "sql_query": "SELECT t1.name , t1.age FROM pilot AS t1 JOIN MATCH AS t2 ON t1.pilot_id = t2.winning_pilot ORDER BY t1.age LIMIT 1",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 26,
+    "nl_query": "What are the names of customers with accounts, and what are the total savings balances for each?",
+    "sql_query": "SELECT SUM(T2.balance) , T1.name FROM accounts AS T1 JOIN savings AS T2 ON T1.custid = T2.custid GROUP BY T1.name",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 27,
+    "nl_query": "List the medicine name and trade name which can both interact as 'inhibitor' and 'activitor' with enzymes.",
+    "sql_query": "SELECT T1.name , T1.trade_name FROM medicine AS T1 JOIN medicine_enzyme_interaction AS T2 ON T2.medicine_id = T1.id WHERE interaction_type = 'inhibitor' INTERSECT SELECT T1.name , T1.trade_name FROM medicine AS T1 JOIN medicine_enzyme_interaction AS T2 ON T2.medicine_id = T1.id WHERE interaction_type = 'activitor'",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 28,
+    "nl_query": "What is the most common hometown of gymnasts?",
+    "sql_query": "SELECT T2.Hometown FROM gymnast AS T1 JOIN people AS T2 ON T1.Gymnast_ID = T2.People_ID GROUP BY T2.Hometown ORDER BY COUNT(*) DESC LIMIT 1",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 29,
+    "nl_query": "What are the code and description of the most frequent behavior incident type?",
+    "sql_query": "SELECT T1.incident_type_code , T2.incident_type_description FROM Behavior_Incident AS T1 JOIN Ref_Incident_Type AS T2 ON T1.incident_type_code = T2.incident_type_code GROUP BY T1.incident_type_code ORDER BY COUNT(*) DESC LIMIT 1",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 30,
+    "nl_query": "Who has friends that are older than the average age? Print their friends and their ages as well",
+    "sql_query": "SELECT DISTINCT T2.name , T2.friend , T1.age FROM Person AS T1 JOIN PersonFriend AS T2 ON T1.name = T2.friend WHERE T1.age > (SELECT AVG(age) FROM person)",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 31,
+    "nl_query": "What is the color of the grape whose wine products has the highest average price?",
+    "sql_query": "SELECT T1.Color FROM GRAPES AS T1 JOIN WINE AS T2 ON T1.Grape = T2.Grape GROUP BY T2.Grape ORDER BY AVG(Price) DESC LIMIT 1",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 32,
+    "nl_query": "Return the average number of weeks on top for volumes by artists that are at most 25 years old.",
+    "sql_query": "SELECT AVG(T2.Weeks_on_Top) FROM artist AS T1 JOIN volume AS T2 ON T1.Artist_ID = T2.Artist_ID WHERE T1.age <= 25",
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 33,
+    "nl_query": "What are the names of all aicrafts that have never won any match?",
+    "sql_query": "SELECT Aircraft FROM aircraft WHERE Aircraft_ID NOT IN (SELECT Winning_Aircraft FROM MATCH)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 34,
+    "nl_query": "List the names of teachers who have not been arranged to teach courses.",
+    "sql_query": "SELECT Name FROM teacher WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 35,
+    "nl_query": "Which buildings do not have any company office? Give me the building names.",
+    "sql_query": "SELECT name FROM buildings WHERE id NOT IN (SELECT building_id FROM Office_locations)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 36,
+    "nl_query": "How many routes go from the United States to Canada?",
+    "sql_query": "SELECT COUNT(*) FROM routes WHERE dst_apid IN (SELECT apid FROM airports WHERE country = 'Canada') AND src_apid IN (SELECT apid FROM airports WHERE country = 'United States')",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 37,
+    "nl_query": "Find the number of users who did not write any review.",
+    "sql_query": "SELECT COUNT(*) FROM useracct WHERE u_id NOT IN (SELECT u_id FROM review)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 38,
+    "nl_query": "List the name of musicals that do not have actors.",
+    "sql_query": "SELECT Name FROM musical WHERE Musical_ID NOT IN (SELECT Musical_ID FROM actor)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 39,
+    "nl_query": "List the names of people that have not been on the affirmative side of debates.",
+    "sql_query": "SELECT Name FROM people WHERE People_id NOT IN (SELECT Affirmative FROM debate_people)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 40,
+    "nl_query": "List the names of the schools without any endowment.",
+    "sql_query": "SELECT school_name FROM school WHERE school_id NOT IN (SELECT school_id FROM endowment)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 41,
+    "nl_query": "How many students did not have any course enrollment?",
+    "sql_query": "SELECT COUNT(*) FROM Students WHERE student_id NOT IN (SELECT student_id FROM Student_Course_Enrolment)",
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 42,
+    "nl_query": "Which manufacturer has the most number of shops? List its name and year of opening.",
+    "sql_query": "SELECT open_year , name FROM manufacturer ORDER BY num_of_shops DESC LIMIT 1",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 43,
+    "nl_query": "What is the name of the oldest manager?",
+    "sql_query": "SELECT Name FROM manager ORDER BY Age DESC LIMIT 1",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 44,
+    "nl_query": "Find all information about student addresses, and sort by monthly rental in descending order.",
+    "sql_query": "SELECT * FROM Student_Addresses ORDER BY monthly_rental DESC",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 45,
+    "nl_query": "What is the name of the winner with the most rank points who participated in the Australian Open tournament?",
+    "sql_query": "SELECT winner_name FROM matches WHERE tourney_name = 'Australian Open' ORDER BY winner_rank_points DESC LIMIT 1",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 46,
+    "nl_query": "What are the first names for all faculty professors, ordered by first name?",
+    "sql_query": "SELECT Fname FROM FACULTY WHERE Rank = 'Professor' ORDER BY Fname",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 47,
+    "nl_query": "Find the name of the most expensive product.",
+    "sql_query": "SELECT product_name FROM products ORDER BY product_price DESC LIMIT 1",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 48,
+    "nl_query": "List the locations of schools in ascending order of enrollment.",
+    "sql_query": "SELECT LOCATION FROM school ORDER BY Enrollment ASC",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 49,
+    "nl_query": "List the first and last name of all players who are left / L hand in the order of birth date.",
+    "sql_query": "SELECT first_name , last_name FROM players WHERE hand = 'L' ORDER BY birth_date",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider"
+  },
+  {
+    "idx": 50,
+    "nl_query": "What is the desired rate when the rate limit (p) is 50.33?",
+    "sql_query": "SELECT Desired rate (p) FROM TABLE WHERE Rate LIMIT (p) = 50.33",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "wikisql"
+  },
+  {
+    "idx": 51,
+    "nl_query": "What is the rate limit when the desired rate change (%) is +40.4?",
+    "sql_query": "SELECT Rate LIMIT (p) FROM TABLE WHERE Desired rate change (%) = +40.4",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "wikisql"
+  },
+  {
+    "idx": 52,
+    "nl_query": "What is the rate change % when the rate limit is 82.86?",
+    "sql_query": "SELECT Rate change (%) FROM TABLE WHERE Rate LIMIT (p) = 82.86",
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "wikisql"
+  },
+  {
+    "idx": 53,
+    "nl_query": "What are the ids of the faculty members who do not advise any student.",
+    "sql_query": "SELECT FacID FROM Faculty EXCEPT SELECT advisor FROM Student",
+    "scenario": "simple_select",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 54,
+    "nl_query": "Find the first names that are used for professionals or owners but are not used as dog names.",
+    "sql_query": "SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs",
+    "scenario": "simple_select",
+    "difficulty": "hard",
+    "source": "spider"
+  },
+  {
+    "idx": 55,
+    "nl_query": "What are the distinct visit dates?",
+    "sql_query": "SELECT DISTINCT Visit_Date FROM VISITS",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 56,
+    "nl_query": "Find the names of all the product characteristics.",
+    "sql_query": "SELECT DISTINCT characteristic_name FROM CHARACTERISTICS",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 57,
+    "nl_query": "What are the distinct Famous release dates?",
+    "sql_query": "SELECT DISTINCT(Famous_Release_date) FROM artist",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 58,
+    "nl_query": "What are the title and issues of the books?",
+    "sql_query": "SELECT Title , Issues FROM book",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "spider"
+  },
+  {
+    "idx": 59,
+    "nl_query": "what is the minimum rockhampton",
+    "sql_query": "SELECT MIN Rockhampton FROM TABLE",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 60,
+    "nl_query": "What is the highest number listed?",
+    "sql_query": "SELECT MAX Number FROM TABLE",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 61,
+    "nl_query": "What was the largest attended game?",
+    "sql_query": "SELECT MAX Attendance FROM TABLE",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 62,
+    "nl_query": "What is the lowest season?",
+    "sql_query": "SELECT MIN Season FROM TABLE",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "wikisql"
+  },
+  {
+    "idx": 63,
+    "nl_query": "What are the names(namesakes) through out the entire chart?",
+    "sql_query": "SELECT Name (Namesake) FROM TABLE",
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "wikisql"
+  }
+]

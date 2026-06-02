@@ -1,0 +1,415 @@
+[
+  {
+    "nl_query": "What are the names of people who are not from Russia?",
+    "sql_query": "SELECT Name FROM people WHERE Nationality != \"Russia\"",
+    "schema": {
+      "raw_id": "poker_player",
+      "tables": [
+        "poker_player",
+        "people"
+      ],
+      "columns": [
+        "Poker_Player_ID",
+        "People_ID",
+        "Final_Table_Made",
+        "Best_Finish",
+        "Money_Rank",
+        "Earnings",
+        "People_ID",
+        "Nationality",
+        "Name",
+        "Birth_Date",
+        "Height"
+      ]
+    },
+    "scenario": "filters",
+    "difficulty": "easy",
+    "source": "spider",
+    "gold_id": "gold_01",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "Clean filter with != operator. Simple, unambiguous NL. Good easy baseline."
+  },
+  {
+    "nl_query": "What are the headquarters that have both a company in the banking and 'oil and gas' industries?",
+    "sql_query": "SELECT headquarters FROM company WHERE main_industry = 'Banking' INTERSECT SELECT headquarters FROM company WHERE main_industry = 'Oil AND gas'",
+    "schema": {
+      "raw_id": "gas_company",
+      "tables": [
+        "company",
+        "gas_station",
+        "station_company"
+      ],
+      "columns": [
+        "Company_ID",
+        "Rank",
+        "Company",
+        "Headquarters",
+        "Main_Industry",
+        "Sales_billion",
+        "Profits_billion",
+        "Assets_billion",
+        "Market_Value",
+        "Station_ID",
+        "Open_Year",
+        "Location",
+        "Manager_Name",
+        "Vice_Manager_Name",
+        "Representative_Name",
+        "Station_ID",
+        "Company_ID",
+        "Rank_of_the_Year"
+      ]
+    },
+    "scenario": "filters",
+    "difficulty": "hard",
+    "source": "spider",
+    "gold_id": "gold_02",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "Hard filter requiring WHERE with multiple conditions across industries."
+  },
+  {
+    "nl_query": "What is the maximum capacity and the average of all stadiums ?",
+    "sql_query": "SELECT MAX(capacity), average FROM stadium",
+    "schema": {
+      "raw_id": "concert_singer",
+      "tables": [
+        "stadium",
+        "singer",
+        "concert",
+        "singer_in_concert"
+      ],
+      "columns": [
+        "Stadium_ID",
+        "Location",
+        "Name",
+        "Capacity",
+        "Highest",
+        "Lowest",
+        "Average",
+        "Singer_ID",
+        "Name",
+        "Country",
+        "Song_Name",
+        "Song_release_year",
+        "Age",
+        "Is_male",
+        "concert_ID",
+        "concert_Name",
+        "Theme",
+        "Stadium_ID",
+        "Year",
+        "concert_ID",
+        "Singer_ID"
+      ]
+    },
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider",
+    "gold_id": "gold_03",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "Two aggregate functions (MAX + AVG) in one SELECT. Good medium complexity."
+  },
+  {
+    "nl_query": "What is the number of airports per country, ordered from most to least?",
+    "sql_query": "SELECT COUNT(*) , country FROM airports GROUP BY country ORDER BY COUNT(*) DESC",
+    "schema": {
+      "raw_id": "flight_4",
+      "tables": [
+        "routes",
+        "airports",
+        "airlines"
+      ],
+      "columns": [
+        "rid",
+        "dst_apid",
+        "dst_ap",
+        "src_apid",
+        "src_ap",
+        "alid",
+        "airline",
+        "codeshare",
+        "apid",
+        "name",
+        "city",
+        "country",
+        "x",
+        "y",
+        "elevation",
+        "iata",
+        "icao",
+        "alid",
+        "name",
+        "iata",
+        "icao",
+        "callsign",
+        "country",
+        "active"
+      ]
+    },
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider",
+    "gold_id": "gold_04",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "GROUP BY with ORDER BY and result ordering. Real-world reporting pattern."
+  },
+  {
+    "nl_query": "What is the birth date of the poker player with the lowest earnings?",
+    "sql_query": "SELECT T1.Birth_Date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID = T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1",
+    "schema": {
+      "raw_id": "poker_player",
+      "tables": [
+        "poker_player",
+        "people"
+      ],
+      "columns": [
+        "Poker_Player_ID",
+        "People_ID",
+        "Final_Table_Made",
+        "Best_Finish",
+        "Money_Rank",
+        "Earnings",
+        "People_ID",
+        "Nationality",
+        "Name",
+        "Birth_Date",
+        "Height"
+      ]
+    },
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider",
+    "gold_id": "gold_05",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "3-table JOIN with ORDER BY + LIMIT 1. Classic find-the-min/max pattern."
+  },
+  {
+    "nl_query": "What are the names of customers with accounts, and what are the total savings balances for each?",
+    "sql_query": "SELECT SUM(T2.balance) , T1.name FROM accounts AS T1 JOIN savings AS T2 ON T1.custid = T2.custid GROUP BY T1.name",
+    "schema": {
+      "raw_id": "small_bank_1",
+      "tables": [
+        "ACCOUNTS",
+        "SAVINGS",
+        "CHECKING"
+      ],
+      "columns": [
+        "custid",
+        "name",
+        "custid",
+        "balance",
+        "custid",
+        "balance"
+      ]
+    },
+    "scenario": "joins",
+    "difficulty": "hard",
+    "source": "spider",
+    "gold_id": "gold_06",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "JOIN across customer/account tables with SUM aggregation. Very realistic."
+  },
+  {
+    "nl_query": "What are the names of all aicrafts that have never won any match?",
+    "sql_query": "SELECT Aircraft FROM aircraft WHERE Aircraft_ID NOT IN (SELECT Winning_Aircraft FROM MATCH)",
+    "schema": {
+      "raw_id": "aircraft",
+      "tables": [
+        "pilot",
+        "aircraft",
+        "match",
+        "airport",
+        "airport_aircraft"
+      ],
+      "columns": [
+        "Pilot_Id",
+        "Name",
+        "Age",
+        "Aircraft_ID",
+        "Aircraft",
+        "Description",
+        "Max_Gross_Weight",
+        "Total_disk_area",
+        "Max_disk_Loading",
+        "Round",
+        "Location",
+        "Country",
+        "Date",
+        "Fastest_Qualifying",
+        "Winning_Pilot",
+        "Winning_Aircraft",
+        "Airport_ID",
+        "Airport_Name",
+        "Total_Passengers",
+        "%_Change_2007",
+        "International_Passengers",
+        "Domestic_Passengers",
+        "Transit_Passengers",
+        "Aircraft_Movements",
+        "Freight_Metric_Tonnes",
+        "ID",
+        "Airport_ID",
+        "Aircraft_ID"
+      ]
+    },
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider",
+    "gold_id": "gold_07",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "NOT IN subquery checking absence. Classic hard pattern for LLMs to get right."
+  },
+  {
+    "nl_query": "Find the number of users who did not write any review.",
+    "sql_query": "SELECT COUNT(*) FROM useracct WHERE u_id NOT IN (SELECT u_id FROM review)",
+    "schema": {
+      "raw_id": "epinions_1",
+      "tables": [
+        "item",
+        "review",
+        "useracct",
+        "trust"
+      ],
+      "columns": [
+        "i_id",
+        "title",
+        "a_id",
+        "u_id",
+        "i_id",
+        "rating",
+        "rank",
+        "u_id",
+        "name",
+        "source_u_id",
+        "target_u_id",
+        "trust"
+      ]
+    },
+    "scenario": "subqueries",
+    "difficulty": "hard",
+    "source": "spider",
+    "gold_id": "gold_08",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "COUNT with NOT IN subquery. Tests whether LLM can handle negation correctly."
+  },
+  {
+    "nl_query": "Which manufacturer has the most number of shops? List its name and year of opening.",
+    "sql_query": "SELECT open_year , name FROM manufacturer ORDER BY num_of_shops DESC LIMIT 1",
+    "schema": {
+      "raw_id": "manufacturer",
+      "tables": [
+        "manufacturer",
+        "furniture",
+        "furniture_manufacte"
+      ],
+      "columns": [
+        "Manufacturer_ID",
+        "Open_Year",
+        "Name",
+        "Num_of_Factories",
+        "Num_of_Shops",
+        "Furniture_ID",
+        "Name",
+        "Num_of_Component",
+        "Market_Rate",
+        "Manufacturer_ID",
+        "Furniture_ID",
+        "Price_in_Dollar"
+      ]
+    },
+    "scenario": "sort_limit",
+    "difficulty": "medium",
+    "source": "spider",
+    "gold_id": "gold_09",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "ORDER BY DESC + LIMIT 1 to find top record. Common dashboard query."
+  },
+  {
+    "nl_query": "Find the names of all the product characteristics.",
+    "sql_query": "SELECT DISTINCT characteristic_name FROM CHARACTERISTICS",
+    "schema": {
+      "raw_id": "products_gen_characteristics",
+      "tables": [
+        "Ref_Characteristic_Types",
+        "Ref_Colors",
+        "Ref_Product_Categories",
+        "Characteristics",
+        "Products",
+        "Product_Characteristics"
+      ],
+      "columns": [
+        "characteristic_type_code",
+        "characteristic_type_description",
+        "color_code",
+        "color_description",
+        "product_category_code",
+        "product_category_description",
+        "unit_of_measure",
+        "characteristic_id",
+        "characteristic_type_code",
+        "characteristic_data_type",
+        "characteristic_name",
+        "other_characteristic_details",
+        "product_id",
+        "color_code",
+        "product_category_code",
+        "product_name",
+        "typical_buying_price",
+        "typical_selling_price",
+        "product_description",
+        "other_product_details",
+        "product_id",
+        "characteristic_id",
+        "product_characteristic_value"
+      ]
+    },
+    "scenario": "simple_select",
+    "difficulty": "easy",
+    "source": "spider",
+    "gold_id": "gold_10",
+    "is_correct": true,
+    "error_type": null,
+    "notes": "Simple SELECT DISTINCT. Clean easy baseline with no conditions."
+  },
+  {
+    "gold_id": "gold_wrong_01",
+    "nl_query": "How many airports do we have?",
+    "sql_query": "SELECT * FROM AIRPORTS",
+    "schema": {
+      "raw_id": "flight_2",
+      "tables": [
+        "airlines",
+        "airports",
+        "flights"
+      ],
+      "columns": [
+        "uid",
+        "Airline",
+        "Abbreviation",
+        "Country",
+        "City",
+        "AirportCode",
+        "AirportName",
+        "State",
+        "id",
+        "SourceAirport",
+        "DestAirport"
+      ]
+    },
+    "scenario": "aggregations",
+    "difficulty": "medium",
+    "source": "spider",
+    "is_correct": false,
+    "error_type": "missing_aggregate",
+    "notes": "INTENTIONALLY WRONG. NL asks for a COUNT but SQL returns all rows. Simulates a common LLM mistake: understanding the table but missing the aggregation. Evaluator must flag this as incorrect."
+  }
+]

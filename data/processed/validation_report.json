@@ -1,0 +1,24 @@
+{
+  "total_pairs": 64,
+  "passed": 64,
+  "failed": 0,
+  "total_issues": 0,
+  "issues": [],
+  "scenario_counts": {
+    "filters": 11,
+    "aggregations": 11,
+    "joins": 11,
+    "subqueries": 9,
+    "sort_limit": 11,
+    "simple_select": 11
+  },
+  "source_counts": {
+    "spider": 47,
+    "wikisql": 17
+  },
+  "difficulty_counts": {
+    "easy": 19,
+    "hard": 24,
+    "medium": 21
+  }
+}

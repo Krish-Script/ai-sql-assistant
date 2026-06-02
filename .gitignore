@@ -1,0 +1,25 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+
+# Raw datasets
+data/raw/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outputs
+outputs/
+
+# HF Spaces
+deploy/
